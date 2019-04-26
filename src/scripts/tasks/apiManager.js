@@ -29,13 +29,10 @@ const API = {
    },
 
    // api call to delete object from json files
-   deleteTask() {
+   deleteTask(taskId)  {
 
-      return fetch(`${URL}/Tasks$`, {
+      return fetch(`${URL}/Tasks/${taskId}`, {
          method: "DELETE",
-         headers: {
-            "Content-Type": "application/json"
-         }
       })
    },
 

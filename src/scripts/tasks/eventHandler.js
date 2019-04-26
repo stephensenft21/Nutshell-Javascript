@@ -5,7 +5,7 @@ export default {
 
         const taskName = document.querySelector("#task")
         const taskDate = document.querySelector("#date")
-console.log(taskName,taskDate)
+        console.log(taskName, taskDate)
 
         let PostTask = {
             userId: 1,
@@ -24,7 +24,7 @@ console.log(taskName,taskDate)
                 taskDate.value = ""
 
             })
-            
+
 
     },
     editTaskHandler: () => {
@@ -37,18 +37,11 @@ console.log(taskName,taskDate)
         let editTask = {
 
             userId: 1,
-            taskName: taskName.Value,
-            taskDate: taskDate.Value,
+            taskName: taskName.value,
+            taskDate: taskDate.value,
             isCompleted: false
         }
-
-
-
-
-
-
-
-        console.log()
+        
         apiManager.updateTask(editTask)
             .then(() => {
                 const displayContainer = document.querySelector("#display-container")
@@ -59,45 +52,32 @@ console.log(taskName,taskDate)
                 taskDate.value = ""
 
             })
-            
+
 
     },
 
 
-    
+
     deleteTaskHandler: () => {
 
-        const taskName = document.querySelector("#name")
-        const taskDate = document.querySelector("#Date")
-
-
-
-        let deleteTask = {
-            Id: 1,
-            userId: 1,
-            taskName: taskName.Value,
-            taskDate: taskDate.Value,
-            isCompleted: false
-        }
-
-
-
-
-
-
-
-        console.log()
-        apiManager.deleteTask(deleteTask)
+        const taskName = document.querySelector("#task")
+        const taskDate = document.querySelector("#date")
+        
+         
+         console.log("delete button clicked", event.target.parentNode.id.split("--")[1])
+         let taskId = event.target.parentNode.id.split("--")[1]
+         
+        apiManager.deleteTask(taskId)
             .then(() => {
                 const displayContainer = document.querySelector("#display-container")
                 while (displayContainer.firstChild) {
                     displayContainer.removeChild(displayContainer.firstChild)
                 }
-                taskName.value = ""
-                taskDate.value = ""
+                taskName.value = taskName 
+                taskDate.value = taskDate
 
             })
-            .then()
+
 
     },
 

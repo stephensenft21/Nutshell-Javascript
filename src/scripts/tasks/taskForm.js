@@ -24,15 +24,8 @@ const Newtaskform = {
         )
         console.log(Newtaskform)
         
-        const editButton = document.createElement("button")
-        editButton.textContent = "Edit Task"
-        editButton.addEventListener("click", eventHandler.editTaskHandler)
       
-        const deleteButton = document.createElement("button")
-        deleteButton.textContent = "Delete Task"
-        deleteButton.addEventListener("click", () => {
-            eventHandler.deleteTaskHandler()
-        })
+       
 
 
         const TaskFormContainer = document.querySelector("#display-container")
@@ -41,8 +34,7 @@ const Newtaskform = {
         TaskFormContainer.appendChild(dateLabel)
         TaskFormContainer.appendChild(dateInput)
         TaskFormContainer.appendChild(saveButton)
-        TaskFormContainer.appendChild(editButton)
-        TaskFormContainer.appendChild(deleteButton)
+        
 
     }
 
