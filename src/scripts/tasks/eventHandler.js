@@ -1,5 +1,5 @@
 import apiManager from "./apiManager"
-
+import buildTask from "./tasks/tasks";
 export default {
     savetaskHandler: () => {
 
@@ -16,14 +16,16 @@ export default {
         console.log(PostTask)
         apiManager.saveTask(PostTask)
             .then(() => {
-                const displayContainer = document.querySelector("#display-container")
+                const displayContainer = document.querySelector("#task-container")
                 while (displayContainer.firstChild) {
                     displayContainer.removeChild(displayContainer.firstChild)
                 }
                 taskName.value = ""
                 taskDate.value = ""
 
-            })
+            }).then(()=> apiManager.getTask()).then(r => 
+                buildTask(r))
+                
 
 
     },
@@ -60,23 +62,22 @@ export default {
 
     deleteTaskHandler: () => {
 
-        const taskName = document.querySelector("#task")
-        const taskDate = document.querySelector("#date")
+        // const taskName = document.querySelector("#task")
+        // const taskDate = document.querySelector("#date")
         
          
-         console.log("delete button clicked", event.target.parentNode.id.split("--")[1])
-         let taskId = event.target.parentNode.id.split("--")[1]
+        //  console.log("delete button clicked", event.target.id())
+         let taskId = event.target.id
          
-        apiManager.deleteTask(taskId)
+        return apiManager.deleteTask(taskId)
             .then(() => {
-                const displayContainer = document.querySelector("#display-container")
+                const displayContainer = document.querySelector("#task-container")
                 while (displayContainer.firstChild) {
                     displayContainer.removeChild(displayContainer.firstChild)
                 }
-                taskName.value = taskName 
-                taskDate.value = taskDate
+               return displayContainer
 
-            })
+            }).then(()=> apiManager.getTask).then(r => console.log(r))
 
 
     },

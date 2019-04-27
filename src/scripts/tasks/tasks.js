@@ -23,6 +23,7 @@
          const deleteButton = document.createElement("button")
          deleteButton.setAttribute("id","taskToDelete")
          deleteButton.textContent = "Delete Task"
+         deleteButton.id = task.id
          deleteButton.addEventListener("click", eventHandler.deleteTaskHandler)
          const editButton = document.createElement("button")
          editButton.setAttribute("id", "taskToEdit")
